@@ -1,6 +1,6 @@
 packages:
   - '.'
-  - '../lib/api-client-react'   # <-- add this line
+  - '../lib/api-client-react'
 
 catalog:
   '@replit/vite-plugin-cartographer': '^1.0.0'
