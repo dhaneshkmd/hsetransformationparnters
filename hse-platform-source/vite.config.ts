@@ -2,16 +2,16 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import path from "path";
-import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 
 export default defineConfig({
-  base: "/",
-
   plugins: [
     react(),
     tailwindcss(),
-    runtimeErrorOverlay(),
   ],
+
+  root: path.resolve(import.meta.dirname),
+
+  base: "/",
 
   resolve: {
     alias: {
@@ -26,29 +26,20 @@ export default defineConfig({
     dedupe: ["react", "react-dom"],
   },
 
-  root: path.resolve(import.meta.dirname),
-
   build: {
-    outDir: path.resolve(
-      import.meta.dirname,
-      "dist/public"
-    ),
+    outDir: path.resolve(import.meta.dirname, "dist"),
     emptyOutDir: true,
   },
 
   server: {
+    host: "0.0.0.0",
     port: 5173,
     strictPort: true,
-    host: "0.0.0.0",
-    allowedHosts: true,
-    fs: {
-      strict: true,
-    },
   },
 
   preview: {
-    port: 4173,
     host: "0.0.0.0",
-    allowedHosts: true,
+    port: 4173,
+    strictPort: true,
   },
 });
